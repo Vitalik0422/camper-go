@@ -1,0 +1,15 @@
+.headerContainer {
+  background: var(--inputs);
+  position: relative;
+  padding: 0 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 72px;
+}
+
+.headerLogo {
+  position: absolute;
+  top: 28px;
+  left: 64px;
+}

@@ -1,0 +1,29 @@
+.heroContainer {
+  padding: 195px 802px 325px 64px;
+  background: url('/backgrounds/hero-background@1x.png');
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.heroDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.heroTitle,
+.heroText {
+  font-weight: var(--font-semi-bold);
+  color: var(--inputs);
+}
+
+.heroTitle {
+  font-size: 48px;
+  line-height: 67%;
+}
+
+.heroText {
+  font-size: 24px;
+  line-height: 133%;
+}

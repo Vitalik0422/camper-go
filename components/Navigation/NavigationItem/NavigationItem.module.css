@@ -1,0 +1,15 @@
+.navigationItemLink {
+  font-weight: var(--font-medium);
+  line-height: 150%;
+  color: var(--main);
+  transition: color 250ms ease;
+}
+
+.navigationItemLink:hover,
+.navigationItemLink:focus {
+  color: var(--green-hover);
+}
+
+.active {
+  color: var(--grey-green);
+}
