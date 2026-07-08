@@ -1,22 +1,26 @@
-import React from 'react';
+import { formatLabel } from '@/lib/utils/formatLabel';
+import css from './RadioFilterGroup.module.css';
 
-interface RadioOption {
-  label: string;
-  value: string;
-}
 interface RadioFilterGroupProps {
   legend: string;
-  options: RadioOption[];
+  options: string[];
+  name: string;
 }
 
-const RadioFilterGroup = ({ legend, options }: RadioFilterGroupProps) => {
+const RadioFilterGroup = ({ legend, options, name }: RadioFilterGroupProps) => {
+  console.log(options);
   return (
-    <fieldset>
-      <legend>{legend}</legend>
-      {options.map(({ label, value }) => (
-        <label key={label}>
-          {label}
-          <input type="radio" value={value} />
+    <fieldset className={css.radioFiled}>
+      <span className={css.radioGroupLegendText}>{legend}</span>
+      {options.map((option) => (
+        <label key={option} className={css.radioLabel}>
+          {formatLabel(option)}
+          <input
+            type="radio"
+            value={option}
+            name={name}
+            className={css.radioBox}
+          />
         </label>
       ))}
     </fieldset>

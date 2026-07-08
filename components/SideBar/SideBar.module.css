@@ -4,3 +4,23 @@
   background: var(--inputs);
   width: 360px;
 }
+
+.filterText {
+  font-weight: var(--semi-bold);
+  font-size: 20px;
+  line-height: 120%;
+  color: var(--main);
+}
+
+.radioGroupWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 40px;
+}
+.filterButtonWrapper {
+  padding-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

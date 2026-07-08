@@ -1,0 +1,25 @@
+.camperListItem {
+  width: 100%;
+  display: flex;
+  column-gap: 24px;
+  border-radius: 16px;
+  padding: 24px;
+  background-color: var(--inputs);
+}
+
+.camperTitleWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.camperName,
+.camperPrice {
+  color: var(--main);
+  font-size: 24px;
+  line-height: 133%;
+  font-weight: var(--font-semi-bold);
+}
+
+.camperDescriptionText {
+  color: var(--text);
+}

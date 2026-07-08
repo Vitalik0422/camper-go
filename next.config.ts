@@ -7,6 +7,13 @@ const nextConfig: NextConfig = {
       '*.svg': [{ loaders: ['@svgr/webpack'], as: '*.js' }],
     },
   },
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'ac.goit.global',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

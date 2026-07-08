@@ -1,0 +1,19 @@
+.locationInputLabel {
+  display: flex;
+  flex-direction: column;
+}
+
+.labelText {
+  font-family: var(--font-family);
+  font-weight: var(--font-regular);
+  line-height: 150%;
+  color: var(--gray);
+}
+.locationInput {
+  border-radius: 12px;
+  height: 56px;
+  background: var(--white);
+  border: none;
+  padding: 0;
+  padding: 0 48px;
+}

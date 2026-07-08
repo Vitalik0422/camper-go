@@ -1,47 +1,51 @@
+'use client';
+import { useQuery } from '@tanstack/react-query';
 import Button from '../UI/Button/Button';
 import RadioFilterGroup from './RadioFilterGroup/RadioFilterGroup';
 import css from './SideBar.module.css';
-
-const CAMPER_FORM_OPTIONS = [
-  { label: 'Alcove', value: 'alcove' },
-  { label: 'Panel Van', value: 'panel_van' },
-  { label: 'Integrated', value: 'integrated' },
-  { label: 'Semi Integrated', value: 'semi_integrated' },
-];
-
-const ENGINE_OPTIONS = [
-  { label: 'Diesel', value: 'diesel' },
-  { label: 'Petrol', value: 'petrol' },
-  { label: 'Hybrid', value: 'hybrid' },
-  { label: 'Electric', value: 'electric' },
-];
-
-const TRANSMISSION_OPTIONS = [
-  { label: 'Automatic', value: 'automatic' },
-  { label: 'Manual', value: 'manual' },
-];
+import { getFilterCamper } from '@/lib/api/camperServices';
+import SearchLocationForm from './SearchLocationForm/SearchLocationForm';
 
 const SideBar = () => {
+  const { data } = useQuery({
+    queryKey: ['filter'],
+    queryFn: getFilterCamper,
+  });
+
   return (
     <aside className={css.sideBar}>
-      <form action="">
-        <label htmlFor="">
-          Location
-          <input type="text" />
-        </label>
-        <RadioFilterGroup legend="Camper form" options={CAMPER_FORM_OPTIONS} />
-        <RadioFilterGroup legend="Engine" options={ENGINE_OPTIONS} />
-        <RadioFilterGroup
-          legend="Transmission"
-          options={TRANSMISSION_OPTIONS}
-        />
-
-        <Button width={312} height={56}>
-          Search
-        </Button>
-        <Button width={312} height={56} primary={true}>
-          Clear filters
-        </Button>
+      <form>
+        <SearchLocationForm label="Location" />
+        <div className={css.radioGroupWrapper}>
+          <legend className={css.filterText}>Filters</legend>
+          {data && (
+            <>
+              <RadioFilterGroup
+                legend="Camper form"
+                options={data.forms}
+                name="form"
+              />
+              <RadioFilterGroup
+                legend="Engine"
+                options={data.engines}
+                name="engine"
+              />
+              <RadioFilterGroup
+                legend="Transmission"
+                options={data.transmissions}
+                name="transmission"
+              />
+            </>
+          )}
+        </div>
+        <div className={css.filterButtonWrapper}>
+          <Button width={312} height={56}>
+            Search
+          </Button>
+          <Button width={312} height={56} primary={true}>
+            Clear filters
+          </Button>
+        </div>
       </form>
     </aside>
   );
