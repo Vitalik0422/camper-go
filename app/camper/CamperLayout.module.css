@@ -4,4 +4,7 @@
 
 .camperContainer {
   padding: 0 64px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 88px;
 }

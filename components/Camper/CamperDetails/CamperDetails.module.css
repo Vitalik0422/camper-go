@@ -1,0 +1,84 @@
+.camperDetails {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.camperInfo {
+  background: var(--inputs);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
+.camperNameWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.camperNameThumb {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.camperTitle,
+.camperPrice {
+  color: var(--main);
+  font-size: 24px;
+  line-height: 133%;
+  font-weight: var(--font-semi-bold);
+}
+
+.camperLocation {
+  display: flex;
+  column-gap: 16px;
+}
+.camperRating {
+  display: flex;
+  gap: 4px;
+}
+.camperDetailsText {
+  font-weight: var(--font-regular);
+
+  line-height: 150%;
+  color: var(--text);
+}
+
+.camperSpecs {
+  background: var(--inputs);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.camperSpecHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.camperSpecDetailsList {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.camperSpecDetailsItem {
+  display: flex;
+  justify-content: space-between;
+}
+
+.camperSpecText {
+  font-weight: var(--font-regular);
+  line-height: 150%;
+  text-align: center;
+  color: var(--main);
+}

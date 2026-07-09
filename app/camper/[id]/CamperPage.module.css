@@ -1,0 +1,8 @@
+.camperPageFirstRow {
+  display: flex;
+  column-gap: 24px;
+}
+.camperPageSecondRow {
+  display: flex;
+  flex-direction: column;
+}

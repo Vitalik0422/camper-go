@@ -1,0 +1,18 @@
+.camperGalleryWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 27px;
+}
+
+.camperMainPhotoGallery {
+  border-radius: 17px;
+}
+
+.camperSliderWrapper {
+  display: flex;
+  column-gap: 32px;
+}
+
+.camperGalleryItem {
+  border-radius: 16px;
+}

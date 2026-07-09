@@ -8,7 +8,6 @@ interface CampersListProps {
 }
 
 const CampersList = ({ campers }: CampersListProps) => {
-  console.log(campers);
   return (
     <ul className={css.camperList}>
       {campers.map((camper) => (

@@ -8,7 +8,6 @@ interface RadioFilterGroupProps {
 }
 
 const RadioFilterGroup = ({ legend, options, name }: RadioFilterGroupProps) => {
-  console.log(options);
   return (
     <fieldset className={css.radioFiled}>
       <span className={css.radioGroupLegendText}>{legend}</span>

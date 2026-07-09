@@ -2,6 +2,7 @@ import Gas from './icons/gasStation.svg';
 import Transmission from './icons/transmission.svg';
 import Car from './icons/car.svg';
 import Star from './icons/star.svg';
+import UnStar from './icons/unStar.svg';
 import Map from './icons/map.svg';
 
 const ICON_OBJECT = {
@@ -10,6 +11,7 @@ const ICON_OBJECT = {
   car: Car,
   star: Star,
   map: Map,
+  unStar: UnStar,
 };
 
 export type IconsName = keyof typeof ICON_OBJECT;
