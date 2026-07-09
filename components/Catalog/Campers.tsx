@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import React from 'react';
 import CampersList from './CampersList/CampersList';
 import { ResponseCampers } from '@/lib/api/types';

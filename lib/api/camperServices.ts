@@ -1,3 +1,4 @@
+import { Camper } from '@/types/camper';
 import { instance } from '.';
 import { GetFilters, RequestCampers, ResponseCampers } from './types';
 
@@ -16,5 +17,10 @@ export const getCampers = async (
   };
 
   const response = await instance.get<ResponseCampers>('/', { params: params });
+  return response.data;
+};
+
+export const getCamper = async (id: string): Promise<Camper> => {
+  const response = await instance.get<Camper>(`/${id}`);
   return response.data;
 };

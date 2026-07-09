@@ -1,4 +1,4 @@
-import React from 'react';
+import css from './CampersList.module.css';
 
 import CampersItem from '../CampersItem/CampersItem';
 import { Camper } from '@/types/camper';
@@ -10,7 +10,7 @@ interface CampersListProps {
 const CampersList = ({ campers }: CampersListProps) => {
   console.log(campers);
   return (
-    <ul>
+    <ul className={css.camperList}>
       {campers.map((camper) => (
         <CampersItem key={camper.id} camper={camper} />
       ))}
