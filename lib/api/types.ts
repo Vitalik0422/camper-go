@@ -25,3 +25,12 @@ export interface ResponseCampers {
   totalPages: number;
   campers: Camper[];
 }
+
+export interface Booking {
+  name: string;
+  email: string;
+}
+export interface RequestBooking {
+  body: Booking;
+  camperId: string;
+}

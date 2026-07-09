@@ -1,3 +1,4 @@
+import CamperOrderForm from '@/components/Camper/CamperForm/CamperOrderForm';
 import css from './CamperPage.module.css';
 import CamperDetails from '@/components/Camper/CamperDetails/CamperDetails';
 import CamperGallery from '@/components/Camper/CamperGallery/CamperGallery';
@@ -22,6 +23,7 @@ const Camper = async ({ params }: CamperDetails) => {
         <h2>Reviews</h2>
         <div className={css.reviewsWrapper}>
           <CamperReviewsList reviews={reviews} />
+          <CamperOrderForm camperId={camper.id} />
         </div>
       </div>
     </>

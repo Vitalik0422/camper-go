@@ -1,3 +1,4 @@
+import css from './CamperReviewsList.module.css';
 import { Review } from '@/types/camper';
 import CamperReviewsListItem from './components/CamperReviewsListItem';
 
@@ -7,7 +8,7 @@ interface CamperReviewsListProps {
 
 const CamperReviewsList = async ({ reviews }: CamperReviewsListProps) => {
   return (
-    <ul>
+    <ul className={css.reviewerList}>
       {reviews.map((review) => (
         <CamperReviewsListItem key={review.id} review={review} />
       ))}

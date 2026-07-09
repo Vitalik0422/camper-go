@@ -1,0 +1,7 @@
+.notFoundWrapper {
+  height: 100%;
+  border-radius: 16px;
+  padding: 24px;
+
+  background: var(--inputs);
+}

@@ -6,7 +6,6 @@ interface CamperGalleryProps {
 }
 
 const CamperGallery = ({ photos }: CamperGalleryProps) => {
-  console.log(photos);
   return (
     <div className={css.camperGalleryWrapper}>
       {photos.length > 1 && (

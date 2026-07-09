@@ -1,7 +1,6 @@
 import css from './layout.module.css';
 import SideBar from '@/components/SideBar/SideBar';
 import { getFilterCamper } from '@/lib/api/camperServices';
-import TanStackProvider from '@/providers/TanStackProvider/TanStackProvider';
 import {
   dehydrate,
   HydrationBoundary,
@@ -21,16 +20,14 @@ const CatalogLayout = async ({
     queryFn: getFilterCamper,
   });
   return (
-    <TanStackProvider>
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <section className={css.sectionCatalog}>
-          <div className={clsx('container', css.catalogContainer)}>
-            <SideBar />
-            {children}
-          </div>
-        </section>
-      </HydrationBoundary>
-    </TanStackProvider>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <section className={css.sectionCatalog}>
+        <div className={clsx('container', css.catalogContainer)}>
+          <SideBar />
+          {children}
+        </div>
+      </section>
+    </HydrationBoundary>
   );
 };
 

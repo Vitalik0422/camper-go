@@ -1,0 +1,97 @@
+.camperOrderFormWrapper {
+  border: 1px solid var(--gray-light);
+  border-radius: 16px;
+  padding: 44px;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
+.camperOrderFormTitle {
+  font-weight: var(--font-semi-bold);
+  font-size: 20px;
+  line-height: 120%;
+  color: var(--main);
+}
+.camperOrderFormDescription {
+  font-weight: var(--font-regular);
+  line-height: 150%;
+  color: var(--gray);
+}
+
+.camperOrderForm {
+  display: flex;
+  flex-direction: column;
+  row-gap: 14px;
+}
+
+.formLabel {
+  position: relative;
+}
+
+.formLabelText {
+  display: block;
+  position: absolute;
+  top: 18px;
+  left: 18px;
+
+  font-weight: var(--font-regular);
+  line-height: 150%;
+  color: var(--gray);
+  transition:
+    top 250ms ease,
+    font-size 250ms ease;
+}
+
+.formLabelText.errorLabel {
+  color: #ec383b;
+  padding: 0px 8px;
+}
+
+.camperOrderInput {
+  border-radius: 12px;
+  padding: 18px 18px 18px 18px;
+  width: 527px;
+  height: 60px;
+  background: var(--inputs);
+  border: none;
+
+  font-weight: var(--font-regular);
+  line-height: 150%;
+  color: var(--gray);
+}
+
+.camperOrderInput.error {
+  border: 1px solid var(--button);
+  background: #ffdfdf;
+}
+
+.errorMessage {
+  font-weight: var(--font-regular);
+  line-height: 150%;
+  color: var(--button);
+}
+
+.camperOrderInput:focus {
+  outline: none;
+}
+
+.camperOrderInput:focus + .formLabelText,
+.camperOrderInput:not(:placeholder-shown) + .formLabelText {
+  font-size: 12px;
+  top: -12px;
+  background-color: transparent;
+}
+
+.camperOrderInput:focus + .formLabelText.errorLabel,
+.camperOrderInput:not(:placeholder-shown) + .formLabelText.errorLabel {
+  font-size: 12px;
+  top: -12px;
+  background-color: #ffdfdf;
+  border-radius: 8px;
+}
+
+.camperOrderInput::placeholder {
+  opacity: 0;
+}

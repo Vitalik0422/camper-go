@@ -1,5 +1,6 @@
 'use client';
 import Catalog from '@/components/Catalog/Campers';
+import Loader from '@/components/Loader/Loader';
 import { getCampers } from '@/lib/api/camperServices';
 import { useQuery } from '@tanstack/react-query';
 
@@ -15,7 +16,13 @@ const Cabinet = () => {
     ],
     queryFn: () => getCampers(),
   });
-  return <>{data?.campers && <Catalog data={data} />}</>;
+
+  return (
+    <>
+      <Loader />
+      {data?.campers && <Catalog data={data} />}
+    </>
+  );
 };
 
 export default Cabinet;

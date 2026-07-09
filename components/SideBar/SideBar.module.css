@@ -3,6 +3,7 @@
   padding: 24px;
   background: var(--inputs);
   width: 360px;
+  height: 100%;
 }
 
 .filterText {
