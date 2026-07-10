@@ -13,14 +13,9 @@ export const getFilterCamper = async (): Promise<GetFilters> => {
 };
 
 export const getCampers = async (
-  page = 1,
-  perPage = 4,
+  params: RequestCampers,
 ): Promise<ResponseCampers> => {
-  const params: RequestCampers = {
-    page,
-    perPage,
-  };
-
+  params.perPage = 4;
   const response = await instance.get<ResponseCampers>('/', { params: params });
   return response.data;
 };

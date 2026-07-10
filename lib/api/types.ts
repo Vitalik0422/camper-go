@@ -5,17 +5,14 @@ export interface GetFilters {
   transmissions: string[];
   engines: string[];
 }
-interface Filters {
-  location: string;
-  form: string;
-  transmission: string;
-  engine: string;
-}
 
 export interface RequestCampers {
-  page: number;
-  perPage: number;
-  filters?: Filters;
+  page?: number;
+  perPage?: number;
+  location?: string;
+  form?: string;
+  transmission?: string;
+  engine?: string;
 }
 
 export interface ResponseCampers {

@@ -10,6 +10,7 @@ interface ButtonProps {
   type?: ButtonType;
   href?: string;
   primary?: boolean;
+  onClick?: () => void;
   width: string | number | undefined;
   height: string | number | undefined;
 }
@@ -18,6 +19,7 @@ const Button = ({
   children,
   type = 'button',
   href,
+  onClick,
   width = '0px',
   height = '0px',
   primary,
@@ -37,6 +39,7 @@ const Button = ({
       type={type}
       className={clsx(css.button, primary && css.white)}
       style={{ width: `${width}px`, height: `${height}px` }}
+      onClick={onClick}
     >
       {children}
     </button>

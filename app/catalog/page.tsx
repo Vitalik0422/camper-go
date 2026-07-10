@@ -4,7 +4,7 @@ import {
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-import Cabinet from './Catalog.client';
+import Cabinet from './CatalogPage.client';
 
 const Catalog = async () => {
   const queryClient = new QueryClient();
@@ -15,10 +15,13 @@ const Catalog = async () => {
       {
         page: 1,
         perPage: 4,
-        filters: { form: '', transmission: '', engine: '' },
+        location: '',
+        form: '',
+        transmission: '',
+        engine: '',
       },
     ],
-    queryFn: () => getCampers(1, 4),
+    queryFn: () => getCampers({ page: 1 }),
   });
 
   return (
