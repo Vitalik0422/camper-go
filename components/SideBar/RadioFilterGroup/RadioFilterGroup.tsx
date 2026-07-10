@@ -5,9 +5,15 @@ interface RadioFilterGroupProps {
   legend: string;
   options: string[];
   name: string;
+  value?: string;
 }
 
-const RadioFilterGroup = ({ legend, options, name }: RadioFilterGroupProps) => {
+const RadioFilterGroup = ({
+  legend,
+  options,
+  name,
+  value,
+}: RadioFilterGroupProps) => {
   return (
     <fieldset className={css.radioFiled}>
       <span className={css.radioGroupLegendText}>{legend}</span>
@@ -19,6 +25,7 @@ const RadioFilterGroup = ({ legend, options, name }: RadioFilterGroupProps) => {
             value={option}
             name={name}
             className={css.radioBox}
+            defaultChecked={option === value}
           />
         </label>
       ))}

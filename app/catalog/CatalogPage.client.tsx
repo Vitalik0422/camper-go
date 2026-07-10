@@ -1,9 +1,12 @@
 'use client';
+import css from './CatalogPage.module.css';
 import Catalog from '@/components/Catalog/Campers';
 import Loader from '@/components/Loader/Loader';
 import NotFoundCampers from '@/components/NotFoundCampers/NotFoundCampers';
+import SideBar from '@/components/SideBar/SideBar';
 import { getCampers } from '@/lib/api/camperServices';
 import { useQuery } from '@tanstack/react-query';
+import clsx from 'clsx';
 import { useSearchParams } from 'next/navigation';
 
 interface Params {
@@ -26,13 +29,13 @@ const CatalogPage = () => {
     ],
     queryFn: () => getCampers(params),
   });
-  console.log();
 
-  if (!data?.campers.length && !isPending) return <NotFoundCampers />;
   return (
     <>
       {isPending && <Loader />}
+      <SideBar />
       {data?.campers && <Catalog data={data} />}
+      {!data?.campers.length && !isPending && <NotFoundCampers />}
     </>
   );
 };

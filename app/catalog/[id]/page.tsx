@@ -14,7 +14,7 @@ const Camper = async ({ params }: CamperDetails) => {
   const reviews = await getReviews(id);
 
   return (
-    <>
+    <div className={css.camperDetailPageWrapper}>
       <div className={css.camperPageFirstRow}>
         <CamperGallery photos={camper.gallery} />
         <CamperDetails camper={camper} />
@@ -26,7 +26,7 @@ const Camper = async ({ params }: CamperDetails) => {
           <CamperOrderForm camperId={camper.id} />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

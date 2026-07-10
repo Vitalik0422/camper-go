@@ -12,7 +12,7 @@ const Hero = () => {
             You can find everything you want in our catalog
           </p>
         </div>
-        <Button width={173} height={56} href="/catalog">
+        <Button href="/catalog" className={css.heroButton}>
           View Now
         </Button>
       </div>

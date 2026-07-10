@@ -1,3 +1,9 @@
+.camperDetailPageWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 88px;
+}
+
 .camperPageFirstRow {
   display: flex;
   column-gap: 24px;

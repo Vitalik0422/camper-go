@@ -77,6 +77,10 @@
   outline: none;
 }
 
+.submitFormButton {
+  width: 100%;
+}
+
 .camperOrderInput:focus + .formLabelText,
 .camperOrderInput:not(:placeholder-shown) + .formLabelText {
   font-size: 12px;

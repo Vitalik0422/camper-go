@@ -11,8 +11,7 @@ interface ButtonProps {
   href?: string;
   primary?: boolean;
   onClick?: () => void;
-  width: string | number | undefined;
-  height: string | number | undefined;
+  className?: string;
 }
 
 const Button = ({
@@ -20,16 +19,14 @@ const Button = ({
   type = 'button',
   href,
   onClick,
-  width = '0px',
-  height = '0px',
+  className,
   primary,
 }: ButtonProps) => {
   if (href)
     return (
       <Link
         href={href}
-        className={clsx(css.button, primary && css.white)}
-        style={{ width: `${width}px`, height: `${height}px` }}
+        className={clsx(css.button, primary && css.white, className)}
       >
         {children}
       </Link>
@@ -37,8 +34,7 @@ const Button = ({
   return (
     <button
       type={type}
-      className={clsx(css.button, primary && css.white)}
-      style={{ width: `${width}px`, height: `${height}px` }}
+      className={clsx(css.button, primary && css.white, className)}
       onClick={onClick}
     >
       {children}

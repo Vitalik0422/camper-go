@@ -13,12 +13,13 @@ const CampersItem = ({ camper }: CampersItemProps) => {
   const { engine, transmission, form } = camper;
   return (
     <li className={css.camperListItem}>
-      <div className={css.camperPhoto}>
+      <div className={css.camperPhotoWrapper}>
         <Image
           src={camper.coverImage}
           alt={`${camper.name} photo`}
           width={219}
           height={240}
+          className={css.camperPhoto}
         />
       </div>
       <div className={css.camperDescription}>
@@ -35,7 +36,7 @@ const CampersItem = ({ camper }: CampersItemProps) => {
               </p>
             </span>
             <p className={css.camperLocationText}>
-              <Icon name={'map'} width={16} height={16} /> {camper.location}
+              <Icon name="map" width={16} height={16} /> {camper.location}
             </p>
           </div>
         </div>
@@ -48,7 +49,7 @@ const CampersItem = ({ camper }: CampersItemProps) => {
           transmission={transmission}
           form={form}
         />
-        <Button width={173} height={56} href={`./camper/${camper.id}`}>
+        <Button className={css.viewMoreButton} href={`./catalog/${camper.id}`}>
           Show more
         </Button>
       </div>

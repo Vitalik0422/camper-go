@@ -33,5 +33,6 @@
 
 .notFoundButtonWrapper {
   display: flex;
-  column-gap: 16px;
+  width: 400px;
+  justify-content: space-between;
 }

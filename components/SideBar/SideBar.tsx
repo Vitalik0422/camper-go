@@ -7,16 +7,26 @@ import RadioFilterGroup from './RadioFilterGroup/RadioFilterGroup';
 import css from './SideBar.module.css';
 import { getFilterCamper } from '@/lib/api/camperServices';
 import SearchLocationForm from './SearchLocationForm/SearchLocationForm';
-import { useActionState } from 'react';
+import { useActionState, useState } from 'react';
+
+interface FilterValue {
+  location?: string;
+  form?: string;
+  engine?: string;
+  transmission?: string;
+}
 
 const SideBar = () => {
   const { data } = useQuery({
     queryKey: ['filter'],
     queryFn: getFilterCamper,
   });
-
   const router = useRouter();
+
   const searchParams = useSearchParams();
+  const params = Object.fromEntries(searchParams.entries()) as FilterValue;
+
+  const [filter, setFilter] = useState<FilterValue>(() => params);
 
   type FormState = string | null | undefined;
   const handleFilterChange = (
@@ -26,7 +36,10 @@ const SideBar = () => {
     const params = new URLSearchParams(searchParams);
 
     formData.forEach((value, key) => {
-      if (value) params.set(key, value.toString());
+      if (value) {
+        params.set(key, value.toString());
+        setFilter((prev) => ({ ...prev, [key]: value.toString() }));
+      }
     });
 
     params.set('page', '1');
@@ -51,27 +64,29 @@ const SideBar = () => {
                 legend="Camper form"
                 options={data.forms}
                 name="form"
+                value={filter?.form || ''}
               />
               <RadioFilterGroup
                 legend="Engine"
                 options={data.engines}
                 name="engine"
+                value={filter?.engine || ''}
               />
               <RadioFilterGroup
                 legend="Transmission"
                 options={data.transmissions}
                 name="transmission"
+                value={filter?.transmission || ''}
               />
             </>
           )}
         </div>
         <div className={css.filterButtonWrapper}>
-          <Button width={312} height={56} type="submit">
+          <Button type="submit" className={css.catalogButton}>
             Search
           </Button>
           <Button
-            width={312}
-            height={56}
+            className={css.catalogButton}
             primary
             type="reset"
             onClick={handleResetFilter}

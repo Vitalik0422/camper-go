@@ -17,4 +17,14 @@
   border: none;
   padding: 0;
   padding: 0 48px;
+  color: var(--main);
+}
+
+.inputWrapper {
+  position: relative;
+}
+.iconWrapper {
+  position: absolute;
+  top: 18px;
+  left: 20px;
 }

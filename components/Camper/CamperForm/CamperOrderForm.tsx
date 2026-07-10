@@ -98,7 +98,7 @@ const CamperOrderForm = ({ camperId }: CamperOrderFormProps) => {
           )}
         </label>
 
-        <Button width={100} height={56} type="submit">
+        <Button type="submit" className={css.submitFormButton}>
           Send
         </Button>
       </form>

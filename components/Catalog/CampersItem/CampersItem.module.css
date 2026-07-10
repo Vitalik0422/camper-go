@@ -12,6 +12,9 @@
   gap: 24px;
 }
 
+.camperPhoto {
+  border-radius: 16px;
+}
 .camperTitleWrapper {
   display: flex;
   flex-direction: column;
@@ -37,6 +40,7 @@
 .camperRating {
   display: flex;
   gap: 4px;
+  align-items: center;
 }
 
 .camperDescriptionText {
@@ -49,4 +53,8 @@
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.viewMoreButton {
+  width: 173px;
 }

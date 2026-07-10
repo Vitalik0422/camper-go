@@ -1,10 +1,10 @@
-import { getCampers } from '@/lib/api/camperServices';
+import { getCampers, getFilterCamper } from '@/lib/api/camperServices';
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-import Cabinet from './CatalogPage.client';
+import CatalogPage from './CatalogPage.client';
 
 const Catalog = async () => {
   const queryClient = new QueryClient();
@@ -24,9 +24,14 @@ const Catalog = async () => {
     queryFn: () => getCampers({ page: 1 }),
   });
 
+  await queryClient.prefetchQuery({
+    queryKey: ['filter'],
+    queryFn: getFilterCamper,
+  });
+
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Cabinet />
+      <CatalogPage />
     </HydrationBoundary>
   );
 };
