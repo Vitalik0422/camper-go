@@ -1,6 +1,6 @@
 import css from './CampersList.module.css';
 
-import CampersItem from '../CampersItem/CampersItem';
+import CampersItem from '../CampersItem/CamperItem';
 import { Camper } from '@/types/camper';
 
 interface CampersListProps {

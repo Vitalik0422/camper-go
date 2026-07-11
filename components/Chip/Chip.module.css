@@ -1,8 +1,8 @@
-.badge {
+.chip {
   display: flex;
   column-gap: 8px;
   border-radius: 100px;
   padding: 12px 18px;
-  background: var(--badges);
+  background: var(--chip);
   mix-blend-mode: multiply;
 }

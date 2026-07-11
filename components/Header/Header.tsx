@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <header className="">
       <div className={clsx('container', css.headerContainer)}>
-        <Link href="./" className={css.headerLogo}>
+        <Link href="/" className={css.headerLogo}>
           <Logo />
         </Link>
         <Navigation />

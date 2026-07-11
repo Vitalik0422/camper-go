@@ -4,6 +4,7 @@ import {
   GetFilters,
   RequestBooking,
   RequestCampers,
+  ResponseBooking,
   ResponseCampers,
 } from './types';
 
@@ -15,8 +16,8 @@ export const getFilterCamper = async (): Promise<GetFilters> => {
 export const getCampers = async (
   params: RequestCampers,
 ): Promise<ResponseCampers> => {
-  params.perPage = 4;
-  const response = await instance.get<ResponseCampers>('/', { params: params });
+  const query = { ...params, perPage: 4 };
+  const response = await instance.get<ResponseCampers>('/', { params: query });
   return response.data;
 };
 
@@ -30,7 +31,13 @@ export const getReviews = async (id: string): Promise<Review[]> => {
   return response.data;
 };
 
-export const postBooking = async ({ body, camperId }: RequestBooking) => {
-  const response = await instance.post(`/${camperId}/booking-requests`, body);
+export const postBooking = async ({
+  body,
+  camperId,
+}: RequestBooking): Promise<ResponseBooking> => {
+  const response = await instance.post<ResponseBooking>(
+    `/${camperId}/booking-requests`,
+    body,
+  );
   return response.data;
 };

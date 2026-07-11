@@ -1,14 +1,21 @@
 import { Camper } from '@/types/camper';
 import css from './CamperDetails.module.css';
 import Icon from '@/shared/ui/Icon/Icon';
-import CamperFeatureBadges from './CamperFeatureBadges/CamperFeatureBadges';
 import { formatLabel } from '@/lib/utils/formatLabel';
+import { formatUnit } from '@/lib/utils/formatUnit';
+import { formatLocation } from '@/lib/utils/formatLocation';
+import CamperFeatureChip from './CamperFeatureChip/CamperFeatureChip';
 
 interface CamperDetailsProps {
   camper: Camper;
 }
 
 const CamperDetails = ({ camper }: CamperDetailsProps) => {
+  const consumption = camper.consumption
+    .split('/')
+    .map((str, index) => (index === 0 ? formatUnit(str) : str))
+    .join(' / ');
+
   return (
     <div className={css.camperDetails}>
       <div className={css.camperInfo}>
@@ -23,7 +30,8 @@ const CamperDetails = ({ camper }: CamperDetailsProps) => {
                 </p>
               </span>
               <p className={css.camperLocationText}>
-                <Icon name={'map'} width={16} height={16} /> {camper.location}
+                <Icon name={'map'} width={16} height={16} />{' '}
+                {formatLocation(camper.location)}
               </p>
             </div>
             <p className={css.camperPrice}>€{camper.price}</p>
@@ -34,7 +42,7 @@ const CamperDetails = ({ camper }: CamperDetailsProps) => {
       <div className={css.camperSpecs}>
         <div className={css.camperSpecHeader}>
           <h2 className={css.camperTitle}>Vehicle details</h2>
-          <CamperFeatureBadges features={camper.amenities} />
+          <CamperFeatureChip features={camper.amenities} />
         </div>
         <ul className={css.camperSpecDetailsList}>
           <li className={css.camperSpecDetailsItem}>
@@ -43,23 +51,23 @@ const CamperDetails = ({ camper }: CamperDetailsProps) => {
           </li>
           <li className={css.camperSpecDetailsItem}>
             <p className={css.camperSpecText}>Length</p>
-            <p className={css.camperSpecText}>{camper.length}</p>
+            <p className={css.camperSpecText}>{formatUnit(camper.length)}</p>
           </li>
           <li className={css.camperSpecDetailsItem}>
             <p className={css.camperSpecText}>Width</p>
-            <p className={css.camperSpecText}>{camper.width}</p>
+            <p className={css.camperSpecText}>{formatUnit(camper.width)}</p>
           </li>
           <li className={css.camperSpecDetailsItem}>
             <p className={css.camperSpecText}>Height</p>
-            <p className={css.camperSpecText}>{camper.height}</p>
+            <p className={css.camperSpecText}>{formatUnit(camper.height)}</p>
           </li>
           <li className={css.camperSpecDetailsItem}>
             <p className={css.camperSpecText}>Tank</p>
-            <p className={css.camperSpecText}>{camper.tank}</p>
+            <p className={css.camperSpecText}>{formatUnit(camper.tank)}</p>
           </li>
           <li className={css.camperSpecDetailsItem}>
             <p className={css.camperSpecText}>Consumption</p>
-            <p className={css.camperSpecText}>{camper.consumption}</p>
+            <p className={css.camperSpecText}>{consumption}</p>
           </li>
         </ul>
       </div>

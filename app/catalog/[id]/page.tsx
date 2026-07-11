@@ -1,18 +1,84 @@
-import CamperOrderForm from '@/components/Camper/CamperForm/CamperOrderForm';
+import CamperDetails from '@/components/CamperDetails/CamperDetails';
 import css from './CamperPage.module.css';
-import CamperDetails from '@/components/Camper/CamperDetails/CamperDetails';
-import CamperGallery from '@/components/Camper/CamperGallery/CamperGallery';
-import CamperReviewsList from '@/components/Camper/CamperReviewsList/CamperReviewsList';
+import CamperGallery from '@/components/CamperGallery/CamperGallery';
 import { getCamper, getReviews } from '@/lib/api/camperServices';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import CamperReviewsList from '@/components/CamperReviewsList/CamperReviewsList';
+import CamperOrderForm from '@/components/CamperForm/CamperOrderForm';
+
 interface CamperDetails {
   params: Promise<{ id: string }>;
 }
 
+export const generateMetadata = async ({
+  params,
+}: CamperDetails): Promise<Metadata> => {
+  const { id } = await params;
+  const camper = await getCamper(id).catch(() => null);
+
+  if (!camper) {
+    return {
+      title: 'Camper Not Found | Campers',
+      description: 'The requested camper could not be found in the catalog.',
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  const title = `${camper.name} | Campers`;
+  const description = `${camper.description} Location: ${camper.location}. Price: ${camper.price} EUR/day.`;
+  const image = camper.coverImage || camper.gallery[0]?.original;
+  const pageUrl = process.env.NEXT_PUBLIC_BACKEND_URL
+    ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/catalog/${camper.id}`
+    : undefined;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      siteName: 'Campers',
+      url: pageUrl,
+      images: image
+        ? [
+            {
+              url: image,
+              width: 1200,
+              height: 630,
+              alt: camper.name,
+            },
+          ]
+        : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: image
+        ? [
+            {
+              url: image,
+              alt: camper.name,
+            },
+          ]
+        : undefined,
+    },
+  };
+};
+
 const Camper = async ({ params }: CamperDetails) => {
   const { id } = await params;
-  const camper = await getCamper(id);
-  const reviews = await getReviews(id);
+  const [camper, reviews] = await Promise.all([
+    getCamper(id).catch(() => null),
+    getReviews(id).catch(() => []),
+  ]);
 
+  if (!camper) notFound();
   return (
     <div className={css.camperDetailPageWrapper}>
       <div className={css.camperPageFirstRow}>

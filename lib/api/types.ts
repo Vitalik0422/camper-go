@@ -31,3 +31,6 @@ export interface RequestBooking {
   body: Booking;
   camperId: string;
 }
+export interface ResponseBooking {
+  message: string;
+}

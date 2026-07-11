@@ -1,6 +1,7 @@
 import Icon from '@/shared/ui/Icon/Icon';
-import css from './FiltersBadges.module.css';
+import css from './FiltersChipes.module.css';
 import { formatLabel } from '@/lib/utils/formatLabel';
+import Chip from '@/components/Chip/Chip';
 
 interface FiltersBadgesProps {
   engine: string;
@@ -11,18 +12,18 @@ interface FiltersBadgesProps {
 const FiltersBadges = ({ engine, transmission, form }: FiltersBadgesProps) => {
   return (
     <div className={css.filtersBadgesWrapper}>
-      <span className={css.filterBadge}>
+      <Chip>
         <Icon name="gas" width={20} height={20} />
         <p className={css.filterText}>{formatLabel(engine)}</p>
-      </span>
-      <span className={css.filterBadge}>
+      </Chip>
+      <Chip>
         <Icon name="transmission" width={20} height={20} />
         <p className={css.filterText}>{formatLabel(transmission)}</p>
-      </span>
-      <span className={css.filterBadge}>
+      </Chip>
+      <Chip>
         <Icon name="car" width={20} height={20} />
         <p className={css.filterText}>{formatLabel(form)}</p>
-      </span>
+      </Chip>
     </div>
   );
 };

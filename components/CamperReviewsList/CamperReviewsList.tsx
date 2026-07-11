@@ -6,7 +6,7 @@ interface CamperReviewsListProps {
   reviews: Review[];
 }
 
-const CamperReviewsList = async ({ reviews }: CamperReviewsListProps) => {
+const CamperReviewsList = ({ reviews }: CamperReviewsListProps) => {
   return (
     <ul className={css.reviewerList}>
       {reviews.map((review) => (

@@ -7,99 +7,106 @@ import RadioFilterGroup from './RadioFilterGroup/RadioFilterGroup';
 import css from './SideBar.module.css';
 import { getFilterCamper } from '@/lib/api/camperServices';
 import SearchLocationForm from './SearchLocationForm/SearchLocationForm';
-import { useActionState, useState } from 'react';
+import { Filters } from '@/types/filters';
+import Spinner from '../Spinner/Spinner';
 
-interface FilterValue {
-  location?: string;
-  form?: string;
-  engine?: string;
-  transmission?: string;
-}
+const FILTER_KEYS: (keyof Filters)[] = [
+  'location',
+  'form',
+  'engine',
+  'transmission',
+];
 
 const SideBar = () => {
-  const { data } = useQuery({
+  const { data, isError, isFetching, refetch } = useQuery({
     queryKey: ['filter'],
     queryFn: getFilterCamper,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
   });
   const router = useRouter();
-
   const searchParams = useSearchParams();
-  const params = Object.fromEntries(searchParams.entries()) as FilterValue;
 
-  const [filter, setFilter] = useState<FilterValue>(() => params);
+  const filter = Object.fromEntries(searchParams.entries()) as Filters;
 
-  type FormState = string | null | undefined;
-  const handleFilterChange = (
-    _state: FormState,
-    formData: FormData,
-  ): FormState => {
-    const params = new URLSearchParams(searchParams);
+  const handleFilterChange = (formData: FormData) => {
+    const newParams = new URLSearchParams(searchParams);
 
-    formData.forEach((value, key) => {
+    FILTER_KEYS.forEach((key) => {
+      const value = formData.get(key);
       if (value) {
-        params.set(key, value.toString());
-        setFilter((prev) => ({ ...prev, [key]: value.toString() }));
+        newParams.set(key, value.toString());
+      } else {
+        newParams.delete(key);
       }
     });
-
-    router.push(`?${params.toString()}`);
-
-    return null;
+    router.push(`?${newParams.toString()}`);
   };
 
   const handleResetFilter = () => {
-    setFilter({});
     router.push('/catalog');
   };
 
-  const [state, formAction] = useActionState(handleFilterChange, null);
+  const handleRefetchFilter = () => refetch();
 
   return (
     <aside className={css.sideBar}>
-      <form action={formAction}>
-        <SearchLocationForm
-          label="Location"
-          defaultValue={filter.location || ''}
-        />
-        <div className={css.radioGroupWrapper}>
-          <legend className={css.filterText}>Filters</legend>
-          {data && (
-            <>
-              <RadioFilterGroup
-                legend="Camper form"
-                options={data.forms}
-                name="form"
-                value={filter?.form || ''}
-              />
-              <RadioFilterGroup
-                legend="Engine"
-                options={data.engines}
-                name="engine"
-                value={filter?.engine || ''}
-              />
-              <RadioFilterGroup
-                legend="Transmission"
-                options={data.transmissions}
-                name="transmission"
-                value={filter?.transmission || ''}
-              />
-            </>
-          )}
-        </div>
-        <div className={css.filterButtonWrapper}>
-          <Button type="submit" className={css.catalogButton}>
-            Search
-          </Button>
-          <Button
-            className={css.catalogButton}
-            primary
-            type="reset"
-            onClick={handleResetFilter}
-          >
-            Clear filters
+      {isFetching && <Spinner />}
+      {isError && (
+        <div className={css.errorWrapper}>
+          <h2 className={css.filterText}>Failed to load filters</h2>
+          <Button type="button" onClick={handleRefetchFilter}>
+            Try again
           </Button>
         </div>
-      </form>
+      )}
+      {!isFetching && !isError && (
+        <form action={handleFilterChange}>
+          <SearchLocationForm
+            label="Location"
+            defaultValue={filter.location || ''}
+          />
+
+          <div className={css.radioGroupWrapper}>
+            <legend className={css.filterText}>Filters</legend>
+            {data && (
+              <>
+                <RadioFilterGroup
+                  legend="Camper form"
+                  options={data.forms}
+                  name="form"
+                  value={filter?.form || ''}
+                />
+                <RadioFilterGroup
+                  legend="Engine"
+                  options={data.engines}
+                  name="engine"
+                  value={filter?.engine || ''}
+                />
+                <RadioFilterGroup
+                  legend="Transmission"
+                  options={data.transmissions}
+                  name="transmission"
+                  value={filter?.transmission || ''}
+                />
+              </>
+            )}
+          </div>
+          <div className={css.filterButtonWrapper}>
+            <Button type="submit" className={css.catalogButton}>
+              Search
+            </Button>
+            <Button
+              className={css.catalogButton}
+              primary
+              type="reset"
+              onClick={handleResetFilter}
+            >
+              Clear filters
+            </Button>
+          </div>
+        </form>
+      )}
     </aside>
   );
 };

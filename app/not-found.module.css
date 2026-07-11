@@ -1,0 +1,28 @@
+.notFoundSection {
+  padding: 20px;
+}
+
+.notFoundContainer {
+  background: var(--inputs);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  height: 888px;
+}
+
+.notFoundTitle {
+  text-align: center;
+}
+
+.notFoundDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.notFoundDescription {
+  width: 500px;
+  text-align: center;
+}

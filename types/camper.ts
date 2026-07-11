@@ -6,6 +6,10 @@ export interface Gallery {
   order: number;
 }
 
+export type Transmission = 'automatic' | 'manual';
+export type Engine = 'diesel' | 'petrol' | 'hybrid' | 'electric';
+export type Form = 'alcove' | 'panel_van' | 'integrated' | 'semi_integrated';
+
 export interface Camper {
   id: string;
   name: string;
@@ -13,14 +17,14 @@ export interface Camper {
   rating: number;
   location: string;
   description: string;
-  form: string;
+  form: Form;
   length: string;
   width: string;
   height: string;
   tank: string;
   consumption: string;
-  transmission: string;
-  engine: string;
+  transmission: Transmission;
+  engine: Engine;
   amenities: string[];
   createdAt: string;
   updatedAt: string;

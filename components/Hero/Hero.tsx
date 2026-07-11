@@ -16,7 +16,6 @@ const Hero = () => {
           View Now
         </Button>
       </div>
-      ;
     </section>
   );
 };

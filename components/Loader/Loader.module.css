@@ -1,7 +1,7 @@
 .backDrop {
   top: 0;
   left: 0;
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   background: rgba(223, 223, 223, 0.44);
@@ -21,22 +21,7 @@
   row-gap: 32px;
 }
 
-.spinner {
-  width: 72px;
-  height: 72px;
-  border: 4px solid var(--inputs);
-  border-top-color: var(--grey-green);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.spinnerText {
+.loaderText {
   width: 351px;
   display: flex;
   flex-direction: column;
@@ -44,7 +29,7 @@
   align-items: center;
 }
 
-.spinnerTitle {
+.loaderTitle {
   font-weight: var(--font-semi-bold);
   font-size: 24px;
   line-height: 133%;

@@ -13,6 +13,7 @@ interface ButtonProps {
   onClick?: () => void;
   className?: string;
   disabled?: boolean;
+  target?: string;
 }
 
 const Button = ({
@@ -23,12 +24,14 @@ const Button = ({
   className,
   primary,
   disabled,
+  target,
 }: ButtonProps) => {
   if (href)
     return (
       <Link
         href={href}
         className={clsx(css.button, primary && css.white, className)}
+        target={target}
       >
         {children}
       </Link>

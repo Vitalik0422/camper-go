@@ -4,14 +4,13 @@ import Image from 'next/image';
 import FiltersBadges from './FiltersBadges/FiltersBadges';
 import Button from '@/components/UI/Button/Button';
 import Icon from '@/shared/ui/Icon/Icon';
+import { formatLocation } from '@/lib/utils/formatLocation';
 
 interface CampersItemProps {
   camper: Camper;
 }
 
 const CampersItem = ({ camper }: CampersItemProps) => {
-  {
-  }
   const { engine, transmission, form } = camper;
   return (
     <li className={css.camperListItem}>
@@ -39,7 +38,7 @@ const CampersItem = ({ camper }: CampersItemProps) => {
             </span>
             <p className={css.camperLocationText}>
               <Icon name="map" width={16} height={16} />
-              {camper.location.split(',').reverse().join(', ')}
+              {formatLocation(camper.location)}
             </p>
           </div>
         </div>
@@ -49,7 +48,11 @@ const CampersItem = ({ camper }: CampersItemProps) => {
           transmission={transmission}
           form={form}
         />
-        <Button className={css.viewMoreButton} href={`./catalog/${camper.id}`}>
+        <Button
+          className={css.viewMoreButton}
+          href={`/catalog/${camper.id}`}
+          target="_blank"
+        >
           Show more
         </Button>
       </div>

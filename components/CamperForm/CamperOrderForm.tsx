@@ -5,18 +5,27 @@ import { useActionState } from 'react';
 import clsx from 'clsx';
 import { useMutation } from '@tanstack/react-query';
 import { postBooking } from '@/lib/api/camperServices';
+import Icon from '@/shared/ui/Icon/Icon';
+import { toast } from 'sonner';
 
 const NAME_REGEX = /^[a-zA-Zа-яА-ЯіІїЇєЄ\s]+$/;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-type FormState = { errors: { name?: string; email?: string } } | null;
+type FormState = {
+  errors: { name?: string; email?: string };
+  values?: { name: string; email: string };
+} | null;
 
 interface CamperOrderFormProps {
   camperId: string;
 }
 
 const CamperOrderForm = ({ camperId }: CamperOrderFormProps) => {
-  const { mutate } = useMutation({ mutationFn: postBooking });
+  const { mutate } = useMutation({
+    mutationFn: postBooking,
+    onSuccess: (data) =>
+      toast.success(data.message, { style: { background: '#CCFFCC' } }),
+  });
 
   const submitBooking = (_state: FormState, formData: FormData) => {
     const name = formData.get('name') as string;
@@ -69,6 +78,14 @@ const CamperOrderForm = ({ camperId }: CamperOrderFormProps) => {
           >
             Name*
           </span>
+          <span
+            className={clsx(
+              css.formLabelIcon,
+              state?.errors.name && css.showWarningIcon,
+            )}
+          >
+            <Icon name="warning" />
+          </span>
           {state?.errors.name && (
             <span className={css.errorMessage}>{state.errors.name}</span>
           )}
@@ -93,6 +110,15 @@ const CamperOrderForm = ({ camperId }: CamperOrderFormProps) => {
           >
             Email*
           </span>
+          <span
+            className={clsx(
+              css.formLabelIcon,
+              state?.errors.email && css.showWarningIcon,
+            )}
+          >
+            <Icon name="warning" />
+          </span>
+
           {state?.errors.email && (
             <span className={css.errorMessage}>{state.errors.email}</span>
           )}
