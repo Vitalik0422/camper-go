@@ -1,0 +1,6 @@
+.catalogWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 40px;
+}

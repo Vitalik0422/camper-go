@@ -3,7 +3,7 @@
   display: flex;
   column-gap: 24px;
   border-radius: 16px;
-  padding: 24px;
+  padding: 24px 97px 24px 24px;
   background-color: var(--inputs);
 }
 .camperDescription {
@@ -45,6 +45,10 @@
 
 .camperDescriptionText {
   color: var(--text);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .camperRatingText,

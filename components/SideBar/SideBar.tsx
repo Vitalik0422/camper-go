@@ -42,20 +42,25 @@ const SideBar = () => {
       }
     });
 
-    params.set('page', '1');
     router.push(`?${params.toString()}`);
 
     return null;
   };
 
-  const handleResetFilter = () => router.push('/catalog');
+  const handleResetFilter = () => {
+    setFilter({});
+    router.push('/catalog');
+  };
 
   const [state, formAction] = useActionState(handleFilterChange, null);
 
   return (
     <aside className={css.sideBar}>
       <form action={formAction}>
-        <SearchLocationForm label="Location" />
+        <SearchLocationForm
+          label="Location"
+          defaultValue={filter.location || ''}
+        />
         <div className={css.radioGroupWrapper}>
           <legend className={css.filterText}>Filters</legend>
           {data && (

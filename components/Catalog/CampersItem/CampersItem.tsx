@@ -10,6 +10,8 @@ interface CampersItemProps {
 }
 
 const CampersItem = ({ camper }: CampersItemProps) => {
+  {
+  }
   const { engine, transmission, form } = camper;
   return (
     <li className={css.camperListItem}>
@@ -36,14 +38,12 @@ const CampersItem = ({ camper }: CampersItemProps) => {
               </p>
             </span>
             <p className={css.camperLocationText}>
-              <Icon name="map" width={16} height={16} /> {camper.location}
+              <Icon name="map" width={16} height={16} />
+              {camper.location.split(',').reverse().join(', ')}
             </p>
           </div>
         </div>
-        <p className={css.camperDescriptionText}>
-          {camper.description.length > 60 &&
-            camper.description.slice(0, 60) + `...`}
-        </p>
+        <p className={css.camperDescriptionText}>{camper.description}</p>
         <FiltersBadges
           engine={engine}
           transmission={transmission}

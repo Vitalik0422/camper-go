@@ -1,7 +1,7 @@
 .camperDetails {
   display: flex;
   flex-direction: column;
-  row-gap: 16px;
+  justify-content: space-between;
 }
 
 .camperInfo {

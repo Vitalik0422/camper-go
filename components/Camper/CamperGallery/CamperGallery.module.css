@@ -1,4 +1,5 @@
 .camperGalleryWrapper {
+  width: 638px;
   display: flex;
   flex-direction: column;
   row-gap: 27px;
@@ -13,6 +14,34 @@
   column-gap: 32px;
 }
 
-.camperGalleryItem {
+.mainSwiperWrapper {
+  width: 100%;
+}
+.mainPhoto {
   border-radius: 16px;
+  object-fit: cover;
+}
+.swiper {
+  width: 100%;
+}
+
+.swiperSlide {
+  width: 136px;
+  height: 144px;
+}
+
+.thumbSwiperItemWrapper {
+  border-radius: 16px;
+  width: 136px;
+  height: 144px;
+  overflow: hidden;
+}
+.active {
+  outline: 3px solid var(--grey-green);
+  outline-offset: -3px;
+}
+
+.slidePhoto {
+  object-fit: cover;
+  width: 136px;
 }

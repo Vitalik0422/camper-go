@@ -1,13 +1,13 @@
 import React from 'react';
 import CampersList from './CampersList/CampersList';
-import { ResponseCampers } from '@/lib/api/types';
+import { Camper } from '@/types/camper';
 
 interface CatalogProps {
-  data: ResponseCampers;
+  data: Camper[];
 }
 
 const Catalog = ({ data }: CatalogProps) => {
-  return <CampersList campers={data.campers} />;
+  return <CampersList campers={data} />;
 };
 
 export default Catalog;

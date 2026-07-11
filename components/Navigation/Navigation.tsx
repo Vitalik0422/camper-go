@@ -10,6 +10,12 @@ const Navigation = () => {
   ];
 
   const pathname = usePathname();
+
+  function isActiveLink(pathname: string, href: string) {
+    if (href === '/') return pathname === '/';
+    return pathname === href || pathname.startsWith(`${href}/`);
+  }
+
   return (
     <nav>
       <NavigationList>
@@ -18,7 +24,7 @@ const Navigation = () => {
             label={link.label}
             href={link.href}
             key={link.label}
-            variant={pathname === link.href}
+            variant={isActiveLink(pathname, link.href)}
           />
         ))}
       </NavigationList>

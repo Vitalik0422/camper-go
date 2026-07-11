@@ -3,9 +3,13 @@ import css from './SearchLocationForm.module.css';
 
 interface SearchLocationFormProps {
   label: string;
+  defaultValue: string;
 }
 
-const SearchLocationForm = ({ label }: SearchLocationFormProps) => {
+const SearchLocationForm = ({
+  label,
+  defaultValue,
+}: SearchLocationFormProps) => {
   return (
     <label className={css.locationInputLabel}>
       <span className={css.labelText}>{label}</span>
@@ -18,6 +22,7 @@ const SearchLocationForm = ({ label }: SearchLocationFormProps) => {
           className={css.locationInput}
           placeholder="City"
           name="location"
+          defaultValue={defaultValue}
         />
       </div>
     </label>

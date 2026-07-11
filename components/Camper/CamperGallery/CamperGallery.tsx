@@ -1,35 +1,85 @@
+'use client';
 import css from './CamperGallery.module.css';
 import { Gallery } from '@/types/camper';
 import Image from 'next/image';
+import { useState } from 'react';
+import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import type { Swiper as SwiperType } from 'swiper';
+
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
+import clsx from 'clsx';
+
 interface CamperGalleryProps {
   photos: Gallery[];
 }
 
 const CamperGallery = ({ photos }: CamperGalleryProps) => {
+  const [mainSwiper, setMainSwiper] = useState<SwiperType | null>(null);
+  const [thumbSwiper, setThumbSwiper] = useState<SwiperType | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
   return (
     <div className={css.camperGalleryWrapper}>
-      {photos.length > 1 && (
-        <Image
-          src={photos[0].original}
-          alt="Camper outside photo"
-          width={638}
-          height={505}
-          className={css.camperMainPhotoGallery}
-        />
-      )}
-      <div className={css.camperSliderWrapper}>
-        {photos.length > 0 &&
-          photos.map((photo) => (
+      <Swiper
+        loop={true}
+        spaceBetween={10}
+        navigation={true}
+        thumbs={{ swiper: thumbSwiper }}
+        modules={[FreeMode, Thumbs]}
+        className={css.mainSwiperWrapper}
+        onSwiper={setMainSwiper}
+        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+      >
+        {photos.map((photo) => (
+          <SwiperSlide key={photo.id}>
             <Image
-              key={photo.id}
-              src={photo.thumb}
+              src={photo.original}
               alt="Camper photo"
-              width={136}
-              height={144}
-              className={css.camperGalleryItem}
+              width={638}
+              height={505}
+              className={css.mainPhoto}
+              loading="eager"
             />
-          ))}
-      </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      <Swiper
+        onSwiper={setThumbSwiper}
+        loop={true}
+        slidesPerView={4}
+        spaceBetween={30}
+        freeMode={true}
+        watchSlidesProgress={true}
+        modules={[FreeMode, Thumbs]}
+        className={css.swiper}
+      >
+        {photos.map((photo, index) => (
+          <SwiperSlide
+            key={photo.id}
+            className={css.swiperSlide}
+            onClick={() => mainSwiper?.slideToLoop(index)}
+          >
+            <div
+              className={clsx(
+                css.thumbSwiperItemWrapper,
+                index === activeIndex && css.active,
+              )}
+            >
+              <Image
+                width={136}
+                height={144}
+                className={clsx(css.slidePhoto)}
+                src={photo.thumb}
+                alt={'Camper photo'}
+                loading="eager"
+              />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };

@@ -12,6 +12,7 @@ interface ButtonProps {
   primary?: boolean;
   onClick?: () => void;
   className?: string;
+  disabled?: boolean;
 }
 
 const Button = ({
@@ -21,6 +22,7 @@ const Button = ({
   onClick,
   className,
   primary,
+  disabled,
 }: ButtonProps) => {
   if (href)
     return (
@@ -36,6 +38,7 @@ const Button = ({
       type={type}
       className={clsx(css.button, primary && css.white, className)}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>

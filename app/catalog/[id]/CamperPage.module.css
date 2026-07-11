@@ -11,8 +11,10 @@
 .camperPageSecondRow {
   display: flex;
   flex-direction: column;
+  row-gap: 24px;
 }
 .reviewsWrapper {
   display: flex;
   column-gap: 48px;
+  flex-basis: calc((100% - 48px) / 2);
 }

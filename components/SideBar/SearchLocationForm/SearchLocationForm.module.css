@@ -1,6 +1,7 @@
 .locationInputLabel {
   display: flex;
   flex-direction: column;
+
   row-gap: 8px;
 }
 
@@ -11,13 +12,13 @@
   color: var(--gray);
 }
 .locationInput {
+  width: 100%;
   border-radius: 12px;
   height: 56px;
   background: var(--white);
   border: none;
-  padding: 0;
-  padding: 0 48px;
   color: var(--main);
+  padding: 16px 16px 16px 48px;
 }
 
 .inputWrapper {

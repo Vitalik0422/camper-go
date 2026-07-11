@@ -17,7 +17,7 @@ const NotFoundCampers = () => {
         </p>
       </div>
       <div className={css.notFoundButtonWrapper}>
-        <Button primary onClick={handleResetFilter}>
+        <Button primary onClick={handleResetFilter} className="">
           Clear filters
         </Button>
         <Button type="button">View all campers</Button>
