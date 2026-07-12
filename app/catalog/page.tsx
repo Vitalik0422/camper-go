@@ -9,6 +9,7 @@ import {
 import { Metadata } from 'next';
 import CatalogPage from './CatalogPage.client';
 import { DEFAULT_FILTERS } from '@/lib/constants/filters';
+import { buildCatalogQueryKey } from '@/lib/utils/buildCatalogQueryKey';
 import { cleanFilters } from '@/lib/utils/cleanFilters';
 
 export const metadata: Metadata = {
@@ -53,7 +54,7 @@ const Catalog = async () => {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchInfiniteQuery({
-    queryKey: ['catalog', DEFAULT_FILTERS],
+    queryKey: buildCatalogQueryKey(DEFAULT_FILTERS),
     queryFn: ({ pageParam }) =>
       getCampers({ ...cleanFilters(DEFAULT_FILTERS), page: pageParam }),
     initialPageParam: 1,

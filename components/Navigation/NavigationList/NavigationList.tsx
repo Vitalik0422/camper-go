@@ -1,11 +1,11 @@
 import css from './NavigationList.module.css';
 
-interface NavigationItem {
+interface NavigationListProps {
   children: React.ReactNode;
 }
 
-const NavigationItem = ({ children }: NavigationItem) => {
+const NavigationList = ({ children }: NavigationListProps) => {
   return <ul className={css.navigationList}>{children}</ul>;
 };
 
-export default NavigationItem;
+export default NavigationList;

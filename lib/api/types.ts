@@ -1,18 +1,15 @@
-import { Camper } from '@/types/camper';
+import { Camper, Engine, Form, Transmission } from '@/types/camper';
+import { Filters } from '@/types/filters';
 
 export interface GetFilters {
-  forms: string[];
-  transmissions: string[];
-  engines: string[];
+  forms: Form[];
+  transmissions: Transmission[];
+  engines: Engine[];
 }
 
-export interface RequestCampers {
+export interface RequestCampers extends Filters {
   page?: number;
   perPage?: number;
-  location?: string;
-  form?: string;
-  transmission?: string;
-  engine?: string;
 }
 
 export interface ResponseCampers {

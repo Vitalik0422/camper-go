@@ -21,10 +21,11 @@ interface CamperOrderFormProps {
 }
 
 const CamperOrderForm = ({ camperId }: CamperOrderFormProps) => {
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: postBooking,
     onSuccess: (data) =>
       toast.success(data.message, { style: { background: '#CCFFCC' } }),
+    onError: () => toast.error('Booking failed. Please try again.'),
   });
 
   const submitBooking = (_state: FormState, formData: FormData) => {
@@ -124,8 +125,12 @@ const CamperOrderForm = ({ camperId }: CamperOrderFormProps) => {
           )}
         </label>
 
-        <Button type="submit" className={css.submitFormButton}>
-          Send
+        <Button
+          type="submit"
+          className={css.submitFormButton}
+          disabled={isPending}
+        >
+          {isPending ? 'Sending...' : 'Send'}
         </Button>
       </form>
     </div>

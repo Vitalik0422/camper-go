@@ -3,7 +3,7 @@ import css from './CamperGallery.module.css';
 import { Gallery } from '@/types/camper';
 import Image from 'next/image';
 import { useState } from 'react';
-import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+import { FreeMode, Thumbs } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
 
@@ -21,6 +21,11 @@ const CamperGallery = ({ photos }: CamperGalleryProps) => {
   const [mainSwiper, setMainSwiper] = useState<SwiperType | null>(null);
   const [thumbSwiper, setThumbSwiper] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  if (!photos.length) {
+    return <div className={css.camperGalleryWrapper}>No photos available.</div>;
+  }
+
   return (
     <div className={css.camperGalleryWrapper}>
       <Swiper

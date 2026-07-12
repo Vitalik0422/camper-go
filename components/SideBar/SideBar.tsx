@@ -7,6 +7,7 @@ import RadioFilterGroup from './RadioFilterGroup/RadioFilterGroup';
 import css from './SideBar.module.css';
 import { getFilterCamper } from '@/lib/api/camperServices';
 import SearchLocationForm from './SearchLocationForm/SearchLocationForm';
+import { parseFilters } from '@/lib/utils/parseFilters';
 import { Filters } from '@/types/filters';
 import Spinner from '../Spinner/Spinner';
 
@@ -27,7 +28,7 @@ const SideBar = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const filter = Object.fromEntries(searchParams.entries()) as Filters;
+  const filter = parseFilters(searchParams);
   const formKey = searchParams.toString();
 
   const handleFilterChange = (formData: FormData) => {

@@ -14,6 +14,7 @@ interface ButtonProps {
   className?: string;
   disabled?: boolean;
   target?: string;
+  rel?: string;
 }
 
 const Button = ({
@@ -25,6 +26,7 @@ const Button = ({
   primary,
   disabled,
   target,
+  rel,
 }: ButtonProps) => {
   if (href)
     return (
@@ -32,6 +34,7 @@ const Button = ({
         href={href}
         className={clsx(css.button, primary && css.white, className)}
         target={target}
+        rel={rel}
       >
         {children}
       </Link>

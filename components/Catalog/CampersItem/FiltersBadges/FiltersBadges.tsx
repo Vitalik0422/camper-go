@@ -1,12 +1,13 @@
 import Icon from '@/shared/ui/Icon/Icon';
-import css from './FiltersChipes.module.css';
+import css from './FiltersBadges.module.css';
 import { formatLabel } from '@/lib/utils/formatLabel';
 import Chip from '@/components/Chip/Chip';
+import { Engine, Form, Transmission } from '@/types/camper';
 
 interface FiltersBadgesProps {
-  engine: string;
-  transmission: string;
-  form: string;
+  engine: Engine;
+  transmission: Transmission;
+  form: Form;
 }
 
 const FiltersBadges = ({ engine, transmission, form }: FiltersBadgesProps) => {

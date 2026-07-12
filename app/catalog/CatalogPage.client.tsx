@@ -7,7 +7,9 @@ import SideBar from '@/components/SideBar/SideBar';
 import Button from '@/components/UI/Button/Button';
 import { getCampers } from '@/lib/api/camperServices';
 import { DEFAULT_FILTERS } from '@/lib/constants/filters';
+import { buildCatalogQueryKey } from '@/lib/utils/buildCatalogQueryKey';
 import { cleanFilters } from '@/lib/utils/cleanFilters';
+import { parseFilters } from '@/lib/utils/parseFilters';
 import { Filters } from '@/types/filters';
 import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -17,7 +19,7 @@ const CatalogPage = () => {
   const searchParams = useSearchParams();
   const filters: Filters = {
     ...DEFAULT_FILTERS,
-    ...Object.fromEntries(searchParams.entries()),
+    ...parseFilters(searchParams),
   };
 
   const {
@@ -26,11 +28,10 @@ const CatalogPage = () => {
     hasNextPage,
     isFetchingNextPage,
     isPending,
-    isFetching,
     isError,
     refetch,
   } = useInfiniteQuery({
-    queryKey: ['catalog', { ...filters }],
+    queryKey: buildCatalogQueryKey(filters),
     queryFn: ({ pageParam }) =>
       getCampers({ ...cleanFilters(filters), page: pageParam }),
     placeholderData: keepPreviousData,
@@ -52,7 +53,7 @@ const CatalogPage = () => {
 
   return (
     <>
-      {isFetching && <Loader />}
+      {isPending && <Loader />}
       <SideBar />
 
       {isError && (

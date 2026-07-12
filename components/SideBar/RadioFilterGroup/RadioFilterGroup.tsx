@@ -16,30 +16,11 @@ const RadioFilterGroup = ({
   name,
   value,
 }: RadioFilterGroupProps) => {
-  const handleMouseDown = (e: React.MouseEvent<HTMLLabelElement>) => {
-    const input = e.currentTarget.querySelector('input');
-    if (input) {
-      input.dataset.wasChecked = String(input.checked);
-    }
-  };
-
-  const handleClick = (e: React.MouseEvent<HTMLLabelElement>) => {
-    const input = e.currentTarget.querySelector('input');
-    if (input && input.dataset.wasChecked === 'true') {
-      input.checked = false;
-    }
-  };
-
   return (
     <fieldset className={css.radioFiled}>
       <span className={css.radioGroupLegendText}>{legend}</span>
       {options.map((option) => (
-        <label
-          key={option}
-          className={css.radioLabel}
-          onMouseDown={handleMouseDown}
-          onClick={handleClick}
-        >
+        <label key={option} className={css.radioLabel}>
           {formatLabel(option)}
           <input
             type="radio"

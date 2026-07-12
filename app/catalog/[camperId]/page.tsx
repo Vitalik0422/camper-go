@@ -7,15 +7,15 @@ import { notFound } from 'next/navigation';
 import CamperReviewsList from '@/components/CamperReviewsList/CamperReviewsList';
 import CamperOrderForm from '@/components/CamperForm/CamperOrderForm';
 
-interface CamperDetails {
-  params: Promise<{ id: string }>;
+interface CamperPageProps {
+  params: Promise<{ camperId: string }>;
 }
 
 export const generateMetadata = async ({
   params,
-}: CamperDetails): Promise<Metadata> => {
-  const { id } = await params;
-  const camper = await getCamper(id).catch(() => null);
+}: CamperPageProps): Promise<Metadata> => {
+  const { camperId } = await params;
+  const camper = await getCamper(camperId).catch(() => null);
 
   if (!camper) {
     return {
@@ -71,14 +71,15 @@ export const generateMetadata = async ({
   };
 };
 
-const Camper = async ({ params }: CamperDetails) => {
-  const { id } = await params;
+const CamperPage = async ({ params }: CamperPageProps) => {
+  const { camperId } = await params;
   const [camper, reviews] = await Promise.all([
-    getCamper(id).catch(() => null),
-    getReviews(id).catch(() => []),
+    getCamper(camperId).catch(() => null),
+    getReviews(camperId).catch(() => []),
   ]);
 
   if (!camper) notFound();
+
   return (
     <div className={css.camperDetailPageWrapper}>
       <div className={css.camperPageFirstRow}>
@@ -96,4 +97,4 @@ const Camper = async ({ params }: CamperDetails) => {
   );
 };
 
-export default Camper;
+export default CamperPage;

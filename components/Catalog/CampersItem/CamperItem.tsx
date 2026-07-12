@@ -52,6 +52,7 @@ const CampersItem = ({ camper }: CampersItemProps) => {
           className={css.viewMoreButton}
           href={`/catalog/${camper.id}`}
           target="_blank"
+          rel="noopener noreferrer"
         >
           Show more
         </Button>
