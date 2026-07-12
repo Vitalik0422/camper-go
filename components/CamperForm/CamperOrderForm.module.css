@@ -1,11 +1,16 @@
 .camperOrderFormWrapper {
   border: 1px solid var(--gray-light);
   border-radius: 16px;
-  padding: 44px;
+  padding: 44px 54px;
 
   display: flex;
   flex-direction: column;
   row-gap: 24px;
+}
+.camperOrderFormHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .camperOrderFormTitle {
@@ -21,6 +26,12 @@
 }
 
 .camperOrderForm {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
+.formLabelWrapper {
   display: flex;
   flex-direction: column;
   row-gap: 14px;

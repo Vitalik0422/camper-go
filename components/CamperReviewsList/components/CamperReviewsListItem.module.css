@@ -23,6 +23,7 @@
 
 .reviewerNameTitle {
   font-weight: var(--font-bold);
+  font-size: 16px;
   line-height: 150%;
   color: var(--main);
 }

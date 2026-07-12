@@ -5,6 +5,7 @@ import Star from './icons/star.svg';
 import UnStar from './icons/unStar.svg';
 import Map from './icons/map.svg';
 import Warning from './icons/warning.svg';
+import Close from './icons/close.svg';
 
 const ICON_OBJECT = {
   gas: Gas,
@@ -14,6 +15,7 @@ const ICON_OBJECT = {
   map: Map,
   unStar: UnStar,
   warning: Warning,
+  close: Close,
 };
 
 export type IconsName = keyof typeof ICON_OBJECT;

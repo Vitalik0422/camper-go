@@ -15,7 +15,9 @@
   align-items: center;
   gap: 20px;
 }
-
+.filterForm {
+  width: 100%;
+}
 .filterText {
   font-weight: var(--semi-bold);
   font-size: 20px;
@@ -33,5 +35,9 @@
   padding-top: 48px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 15px;
+}
+.catalogButton {
+  display: flex;
+  gap: 4px;
 }

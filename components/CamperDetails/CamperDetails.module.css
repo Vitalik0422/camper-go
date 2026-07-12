@@ -1,7 +1,7 @@
 .camperDetails {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 18px;
 }
 
 .camperInfo {
@@ -16,13 +16,13 @@
 .camperNameWrapper {
   display: flex;
   flex-direction: column;
-  row-gap: 8px;
+  row-gap: 12px;
 }
 
 .camperNameThumb {
   display: flex;
   flex-direction: column;
-  row-gap: 16px;
+  row-gap: 17px;
 }
 
 .camperTitle,
