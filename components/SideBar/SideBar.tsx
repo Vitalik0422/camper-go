@@ -28,6 +28,7 @@ const SideBar = () => {
   const searchParams = useSearchParams();
 
   const filter = Object.fromEntries(searchParams.entries()) as Filters;
+  const formKey = searchParams.toString();
 
   const handleFilterChange = (formData: FormData) => {
     const newParams = new URLSearchParams(searchParams);
@@ -44,7 +45,8 @@ const SideBar = () => {
   };
 
   const handleResetFilter = () => {
-    router.push('/catalog');
+    router.replace('/catalog', { scroll: false });
+    router.refresh();
   };
 
   const handleRefetchFilter = () => refetch();
@@ -61,7 +63,7 @@ const SideBar = () => {
         </div>
       )}
       {!isFetching && !isError && (
-        <form action={handleFilterChange}>
+        <form key={formKey} action={handleFilterChange}>
           <SearchLocationForm
             label="Location"
             defaultValue={filter.location || ''}
@@ -99,7 +101,7 @@ const SideBar = () => {
             <Button
               className={css.catalogButton}
               primary
-              type="reset"
+              type="button"
               onClick={handleResetFilter}
             >
               Clear filters
