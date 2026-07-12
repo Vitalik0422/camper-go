@@ -6,11 +6,11 @@ import Button from '../UI/Button/Button';
 import RadioFilterGroup from '../RadioFilterGroup/RadioFilterGroup';
 import css from './SideBar.module.css';
 import { getFilterCamper } from '@/lib/api/camperServices';
-import SearchLocationForm from './SearchLocationForm/SearchLocationForm';
 import { parseFilters } from '@/lib/utils/parseFilters';
 import { Filters } from '@/types/filters';
 import Spinner from '../Spinner/Spinner';
 import Icon from '@/shared/ui/Icon/Icon';
+import SearchLocationForm from '../SearchLocationForm/SearchLocationForm';
 
 const FILTER_KEYS: (keyof Filters)[] = [
   'location',

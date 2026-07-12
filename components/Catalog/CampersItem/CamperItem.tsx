@@ -1,7 +1,7 @@
 import { Camper } from '@/types/camper';
 import css from './CampersItem.module.css';
 import Image from 'next/image';
-import FiltersBadges from './FiltersBadges/FiltersBadges';
+import FilterChip from './FiltersChip/FilterChip';
 import Button from '@/components/UI/Button/Button';
 import Icon from '@/shared/ui/Icon/Icon';
 import { formatLocation } from '@/lib/utils/formatLocation';
@@ -43,11 +43,7 @@ const CampersItem = ({ camper }: CampersItemProps) => {
           </div>
         </div>
         <p className={css.camperDescriptionText}>{camper.description}</p>
-        <FiltersBadges
-          engine={engine}
-          transmission={transmission}
-          form={form}
-        />
+        <FilterChip engine={engine} transmission={transmission} form={form} />
         <Button
           className={css.viewMoreButton}
           href={`/catalog/${camper.id}`}

@@ -121,11 +121,11 @@ const CamperOrderForm = ({ camperId }: CamperOrderFormProps) => {
               <Icon name="warning" />
             </span>
 
-          {state?.errors.email && (
-            <span className={css.errorMessage}>{state.errors.email}</span>
-          )}
-        </label>
-
+            {state?.errors.email && (
+              <span className={css.errorMessage}>{state.errors.email}</span>
+            )}
+          </label>
+        </div>
         <Button
           type="submit"
           className={css.submitFormButton}

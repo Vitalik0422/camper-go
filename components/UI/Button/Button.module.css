@@ -13,7 +13,9 @@
   color: var(--white);
   padding: 16px 30px;
   flex: 1;
-  transition: background 250ms ease;
+  transition:
+    background 250ms ease,
+    border 250ms ease;
 }
 
 .button.white {
@@ -29,4 +31,5 @@
 .button.white:hover,
 .button.white:focus {
   border: 1px solid var(--green-hover);
+  background: var(--white);
 }
