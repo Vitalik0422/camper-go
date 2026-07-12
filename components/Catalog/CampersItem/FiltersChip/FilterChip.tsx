@@ -1,5 +1,5 @@
 import Icon from '@/shared/ui/Icon/Icon';
-import css from './FiltersBadges.module.css';
+import css from './FilterChip.module.css';
 import { formatLabel } from '@/lib/utils/formatLabel';
 import Chip from '@/components/Chip/Chip';
 import { Engine, Form, Transmission } from '@/types/camper';
