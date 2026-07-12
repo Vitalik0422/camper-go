@@ -59,71 +59,72 @@ const CamperOrderForm = ({ camperId }: CamperOrderFormProps) => {
         </p>
       </div>
       <form className={css.camperOrderForm} action={formAction} noValidate>
-        <label className={css.formLabel}>
-          <input
-            type="text"
-            name="name"
-            className={clsx(
-              css.camperOrderInput,
-              state?.errors.name && css.error,
+        <div className={css.formLabelWrapper}>
+          <label className={css.formLabel}>
+            <input
+              type="text"
+              name="name"
+              className={clsx(
+                css.camperOrderInput,
+                state?.errors.name && css.error,
+              )}
+              placeholder="Name*"
+              defaultValue={state?.values.name ?? ''}
+            />
+            <span
+              className={clsx(
+                css.formLabelText,
+                state?.errors.name && css.errorLabel,
+              )}
+            >
+              Name*
+            </span>
+            <span
+              className={clsx(
+                css.formLabelIcon,
+                state?.errors.name && css.showWarningIcon,
+              )}
+            >
+              <Icon name="warning" />
+            </span>
+            {state?.errors.name && (
+              <span className={css.errorMessage}>{state.errors.name}</span>
             )}
-            placeholder="Name*"
-            defaultValue={state?.values.name ?? ''}
-          />
-          <span
-            className={clsx(
-              css.formLabelText,
-              state?.errors.name && css.errorLabel,
-            )}
-          >
-            Name*
-          </span>
-          <span
-            className={clsx(
-              css.formLabelIcon,
-              state?.errors.name && css.showWarningIcon,
-            )}
-          >
-            <Icon name="warning" />
-          </span>
-          {state?.errors.name && (
-            <span className={css.errorMessage}>{state.errors.name}</span>
-          )}
-        </label>
+          </label>
 
-        <label className={css.formLabel}>
-          <input
-            type="email"
-            name="email"
-            className={clsx(
-              css.camperOrderInput,
-              state?.errors.email && css.error,
-            )}
-            placeholder="Email*"
-            defaultValue={state?.values.email ?? ''}
-          />
-          <span
-            className={clsx(
-              css.formLabelText,
-              state?.errors.email && css.errorLabel,
-            )}
-          >
-            Email*
-          </span>
-          <span
-            className={clsx(
-              css.formLabelIcon,
-              state?.errors.email && css.showWarningIcon,
-            )}
-          >
-            <Icon name="warning" />
-          </span>
+          <label className={css.formLabel}>
+            <input
+              type="email"
+              name="email"
+              className={clsx(
+                css.camperOrderInput,
+                state?.errors.email && css.error,
+              )}
+              placeholder="Email*"
+              defaultValue={state?.values.email ?? ''}
+            />
+            <span
+              className={clsx(
+                css.formLabelText,
+                state?.errors.email && css.errorLabel,
+              )}
+            >
+              Email*
+            </span>
+            <span
+              className={clsx(
+                css.formLabelIcon,
+                state?.errors.email && css.showWarningIcon,
+              )}
+            >
+              <Icon name="warning" />
+            </span>
 
-          {state?.errors.email && (
-            <span className={css.errorMessage}>{state.errors.email}</span>
-          )}
-        </label>
-
+            {state?.errors.email && (
+              <span className={css.errorMessage}>{state.errors.email}</span>
+            )}
+          </label>
+        </div>
         <Button type="submit" className={css.submitFormButton}>
           Send
         </Button>

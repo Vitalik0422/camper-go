@@ -9,7 +9,7 @@
 .camperDescription {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 26px;
 }
 
 .camperPhoto {

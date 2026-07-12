@@ -3,12 +3,13 @@
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import Button from '../UI/Button/Button';
-import RadioFilterGroup from './RadioFilterGroup/RadioFilterGroup';
+import RadioFilterGroup from '../RadioFilterGroup/RadioFilterGroup';
 import css from './SideBar.module.css';
 import { getFilterCamper } from '@/lib/api/camperServices';
-import SearchLocationForm from './SearchLocationForm/SearchLocationForm';
+import SearchLocationForm from '../SearchLocationForm/SearchLocationForm';
 import { Filters } from '@/types/filters';
 import Spinner from '../Spinner/Spinner';
+import Icon from '@/shared/ui/Icon/Icon';
 
 const FILTER_KEYS: (keyof Filters)[] = [
   'location',
@@ -58,7 +59,11 @@ const SideBar = () => {
         </div>
       )}
       {!isFetching && !isError && (
-        <form key={formKey} action={handleFilterChange}>
+        <form
+          key={formKey}
+          action={handleFilterChange}
+          className={css.filterForm}
+        >
           <SearchLocationForm
             label="Location"
             defaultValue={filter.location || ''}
@@ -94,6 +99,7 @@ const SideBar = () => {
               Search
             </Button>
             <Button className={css.catalogButton} primary href="/catalog">
+              <Icon name="close" />
               Clear filters
             </Button>
           </div>
