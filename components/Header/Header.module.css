@@ -1,5 +1,7 @@
-.headerContainer {
+.header {
   background: var(--inputs);
+}
+.headerContainer {
   position: relative;
   padding: 0 64px;
   display: flex;

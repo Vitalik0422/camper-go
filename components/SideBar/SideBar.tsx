@@ -46,6 +46,9 @@ const SideBar = () => {
     router.push(`?${newParams.toString()}`);
   };
 
+  const resetFilter = () => {
+    router.push('/catalog');
+  };
   const handleRefetchFilter = () => refetch();
 
   return (
@@ -99,7 +102,12 @@ const SideBar = () => {
             <Button type="submit" className={css.catalogButton}>
               Search
             </Button>
-            <Button className={css.catalogButton} primary href="/catalog">
+            <Button
+              className={css.catalogButton}
+              primary
+              onClick={resetFilter}
+              type="reset"
+            >
               <Icon name="close" />
               Clear filters
             </Button>

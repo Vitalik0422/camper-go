@@ -29,6 +29,7 @@ const CatalogPage = () => {
     isFetchingNextPage,
     isPending,
     isError,
+    isFetching,
     refetch,
   } = useInfiniteQuery({
     queryKey: buildCatalogQueryKey(filters),
@@ -53,7 +54,7 @@ const CatalogPage = () => {
 
   return (
     <>
-      {isPending && <Loader />}
+      {isFetching && <Loader />}
       <SideBar />
 
       {isError && (

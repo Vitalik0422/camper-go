@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 const Header = () => {
   return (
-    <header className="">
+    <header className={css.header}>
       <div className={clsx('container', css.headerContainer)}>
         <Link href="/" className={css.headerLogo}>
           <Logo />

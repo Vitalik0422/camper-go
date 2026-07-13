@@ -28,4 +28,10 @@
   position: absolute;
   top: 18px;
   left: 20px;
+  opacity: 0.6;
+}
+
+.locationInput:focus + .iconWrapper,
+.locationInput:not(:placeholder-shown) + .iconWrapper {
+  opacity: 1;
 }
